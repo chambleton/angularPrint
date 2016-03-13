@@ -77,6 +77,37 @@
           });
         };
     }]);
+    AngularPrint.directive('printBtnAdfParent',['$window', function($window){
+        return {
+            restrict: 'A',
+            link: function(scope, element){
+                element.on('click', function(){
+                    // works, but has spacing issues!
+                    var thisElement = element[0];
+                    while(!thisElement.hasAttribute("adf-id")) {
+                        thisElement = thisElement.parentNode;
+                    }
+                    
+                    thisElement.classList.add('printSection');                    
+                    $window.print();
+                    thisElement.classList.remove('printSection');
+                    
+                    /*
+                    // works, but has tons of css issues!
+                    var thisElement = element[0];
+                    while(!thisElement.hasAttribute("adf-id")) {
+                        thisElement = thisElement.parentNode;
+                    }                    
+                    var printContents = thisElement.innerHTML;
+                    var popupWin = window.open('', '_blank');
+                    popupWin.document.open();
+                    popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="angularPrint.css" /></head><body onload="window.print()">' + printContents + '</body></html>');
+                    popupWin.document.close();
+                    */                  
+                });
+            }
+        };
+    }]);
     AngularPrint.directive('printLandscape',function(){
         return {
             restrict: 'A',
