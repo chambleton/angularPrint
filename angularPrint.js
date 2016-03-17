@@ -77,61 +77,6 @@
           });
         };
     }]);
-    AngularPrint.directive('printAdfWidget',['$window', function($window){
-        return {
-            restrict: 'A',
-            link: function(scope, element){
-                element.on('click', function(){
-                    // get all the adf widget root elements                    
-                    var matches = document.querySelectorAll('[adf-widget-type]');
-                    
-                    // only print the selected widget
-                    for (var i=0; i<matches.length; i++) {                        
-                        if(matches[i].contains(element[0])) {
-                            matches[i].classList.add('printSection');
-                        }
-                        else {
-                            matches[i].classList.add('printRemove');    
-                        }                        
-                    }
-                                        
-                    $window.print();
-                    
-                    // cleanup - remove all the classes we added
-                    for (var i=0; i<matches.length; i++) {
-                        if(matches[i].contains(element[0])) {
-                            matches[i].classList.remove('printSection');
-                        }
-                        else {
-                            matches[i].classList.remove('printRemove');    
-                        }
-                    }                    
-                });
-            }
-        };
-    }]);
-    AngularPrint.directive('printAdfAllWidgets',['$window', function($window){
-        return {
-            restrict: 'A',
-            link: function(scope, element){
-                element.on('click', function(){
-                    // get all the adf widget root elements and add print class           
-                    var matches = document.querySelectorAll('[adf-widget-type]');
-                    
-                    for (var i=0; i<matches.length; i++) {
-                        matches[i].classList.add('printSection');
-                    }
-                                        
-                    $window.print();
-                    
-                    // cleanup - remove all the classes we added
-                    for (var i=0; i<matches.length; i++) {
-                        matches[i].classList.remove('printSection');
-                    }
-                });
-            }
-        };
-    }]);
     AngularPrint.directive('printLandscape',function(){
         return {
             restrict: 'A',
