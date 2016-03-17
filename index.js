@@ -1,1 +1,2 @@
-module.exports = require("AngularPrint");
+require("./angularPrint");
+module.exports = "AngularPrint";
